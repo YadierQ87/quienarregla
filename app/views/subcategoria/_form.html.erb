@@ -1,0 +1,27 @@
+<%= form_with(model: subcategorium, local: true) do |form| %>
+  <% if subcategorium.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(subcategorium.errors.count, "error") %> prohibited this subcategorium from being saved:</h2>
+
+      <ul>
+      <% subcategorium.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :nombre %>
+    <%= form.text_field :nombre, id: :subcategorium_nombre %>
+  </div>
+
+  <div class="field">
+    <%= form.label :categorias_id %>
+    <%= form.text_field :categorias_id, id: :subcategorium_categorias_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,127 @@
+<%= form_with(model: proveedor_servicio, local: true) do |form| %>
+  <% if proveedor_servicio.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(proveedor_servicio.errors.count, "error") %> prohibited this proveedor_servicio from being saved:</h2>
+
+      <ul>
+      <% proveedor_servicio.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :nombre %>
+    <%= form.text_field :nombre, id: :proveedor_servicio_nombre %>
+  </div>
+
+  <div class="field">
+    <%= form.label :telf_contacto %>
+    <%= form.text_field :telf_contacto, id: :proveedor_servicio_telf_contacto %>
+  </div>
+
+  <div class="field">
+    <%= form.label :celular %>
+    <%= form.text_field :celular, id: :proveedor_servicio_celular %>
+  </div>
+
+  <div class="field">
+    <%= form.label :direccion %>
+    <%= form.text_area :direccion, id: :proveedor_servicio_direccion %>
+  </div>
+
+  <div class="field">
+    <%= form.label :localidad %>
+    <%= form.text_field :localidad, id: :proveedor_servicio_localidad %>
+  </div>
+
+  <div class="field">
+    <%= form.label :references %>
+    <%= form.text_field :references, id: :proveedor_servicio_references %>
+  </div>
+
+  <div class="field">
+    <%= form.label :precio_min %>
+    <%= form.text_field :precio_min, id: :proveedor_servicio_precio_min %>
+  </div>
+
+  <div class="field">
+    <%= form.label :precio_standard %>
+    <%= form.text_field :precio_standard, id: :proveedor_servicio_precio_standard %>
+  </div>
+
+  <div class="field">
+    <%= form.label :precio_max %>
+    <%= form.text_field :precio_max, id: :proveedor_servicio_precio_max %>
+  </div>
+
+  <div class="field">
+    <%= form.label :garantia %>
+    <%= form.text_field :garantia, id: :proveedor_servicio_garantia %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tiempo_garantia_dias %>
+    <%= form.text_field :tiempo_garantia_dias, id: :proveedor_servicio_tiempo_garantia_dias %>
+  </div>
+
+  <div class="field">
+    <%= form.label :servicio_domicilio %>
+    <%= form.text_field :servicio_domicilio, id: :proveedor_servicio_servicio_domicilio %>
+  </div>
+
+  <div class="field">
+    <%= form.label :experiencia %>
+    <%= form.text_area :experiencia, id: :proveedor_servicio_experiencia %>
+  </div>
+
+  <div class="field">
+    <%= form.label :evaluacion %>
+    <%= form.text_field :evaluacion, id: :proveedor_servicio_evaluacion %>
+  </div>
+
+  <div class="field">
+    <%= form.label :etiquetas_busqueda %>
+    <%= form.text_area :etiquetas_busqueda, id: :proveedor_servicio_etiquetas_busqueda %>
+  </div>
+
+  <div class="field">
+    <%= form.label :detalles %>
+    <%= form.text_area :detalles, id: :proveedor_servicio_detalles %>
+  </div>
+
+  <div class="field">
+    <%= form.label :estado_activo %>
+    <%= form.text_field :estado_activo, id: :proveedor_servicio_estado_activo %>
+  </div>
+
+  <div class="field">
+    <%= form.label :valido_hasta %>
+    <%= form.datetime_select :valido_hasta, id: :proveedor_servicio_valido_hasta %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cuota_pagada %>
+    <%= form.text_field :cuota_pagada, id: :proveedor_servicio_cuota_pagada %>
+  </div>
+
+  <div class="field">
+    <%= form.label :float %>
+    <%= form.text_field :float, id: :proveedor_servicio_float %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tipo_cliente %>
+    <%= form.text_field :tipo_cliente, id: :proveedor_servicio_tipo_cliente %>
+  </div>
+
+  <div class="field">
+    <%= form.label :categoria_id %>
+    <%= form.text_field :categoria_id, id: :proveedor_servicio_categoria_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

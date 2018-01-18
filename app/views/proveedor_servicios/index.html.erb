@@ -1,0 +1,69 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Proveedor Servicios</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Telf contacto</th>
+      <th>Celular</th>
+      <th>Direccion</th>
+      <th>Localidad</th>
+      <th>References</th>
+      <th>Precio min</th>
+      <th>Precio standard</th>
+      <th>Precio max</th>
+      <th>Garantia</th>
+      <th>Tiempo garantia dias</th>
+      <th>Servicio domicilio</th>
+      <th>Experiencia</th>
+      <th>Evaluacion</th>
+      <th>Etiquetas busqueda</th>
+      <th>Detalles</th>
+      <th>Estado activo</th>
+      <th>Valido hasta</th>
+      <th>Cuota pagada</th>
+      <th>Float</th>
+      <th>Tipo cliente</th>
+      <th>Categoria</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @proveedor_servicios.each do |proveedor_servicio| %>
+      <tr>
+        <td><%= proveedor_servicio.nombre %></td>
+        <td><%= proveedor_servicio.telf_contacto %></td>
+        <td><%= proveedor_servicio.celular %></td>
+        <td><%= proveedor_servicio.direccion %></td>
+        <td><%= proveedor_servicio.localidad %></td>
+        <td><%= proveedor_servicio.references %></td>
+        <td><%= proveedor_servicio.precio_min %></td>
+        <td><%= proveedor_servicio.precio_standard %></td>
+        <td><%= proveedor_servicio.precio_max %></td>
+        <td><%= proveedor_servicio.garantia %></td>
+        <td><%= proveedor_servicio.tiempo_garantia_dias %></td>
+        <td><%= proveedor_servicio.servicio_domicilio %></td>
+        <td><%= proveedor_servicio.experiencia %></td>
+        <td><%= proveedor_servicio.evaluacion %></td>
+        <td><%= proveedor_servicio.etiquetas_busqueda %></td>
+        <td><%= proveedor_servicio.detalles %></td>
+        <td><%= proveedor_servicio.estado_activo %></td>
+        <td><%= proveedor_servicio.valido_hasta %></td>
+        <td><%= proveedor_servicio.cuota_pagada %></td>
+        <td><%= proveedor_servicio.float %></td>
+        <td><%= proveedor_servicio.tipo_cliente %></td>
+        <td><%= proveedor_servicio.categoria %></td>
+        <td><%= link_to 'Show', proveedor_servicio %></td>
+        <td><%= link_to 'Edit', edit_proveedor_servicio_path(proveedor_servicio) %></td>
+        <td><%= link_to 'Destroy', proveedor_servicio, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Proveedor Servicio', new_proveedor_servicio_path %>

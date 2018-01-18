@@ -1,0 +1,2 @@
+json.extract! proveedor_servicio, :id, :nombre, :telf_contacto, :celular, :direccion, :localidad, :references, :precio_min, :precio_standard, :precio_max, :garantia, :tiempo_garantia_dias, :servicio_domicilio, :experiencia, :evaluacion, :etiquetas_busqueda, :detalles, :estado_activo, :valido_hasta, :cuota_pagada, :float, :tipo_cliente, :categoria_id, :created_at, :updated_at
+json.url proveedor_servicio_url(proveedor_servicio, format: :json)

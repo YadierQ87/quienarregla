@@ -1,0 +1,231 @@
+  [1m[35m (62.5ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (101.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5160596074710597465)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateProvincia (20180118170806)
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (126.1ms)[0m  [1m[35mCREATE TABLE "provincia" ("id" bigserial primary key, "nombre" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35mSQL (5.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180118170806"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateMunicipios (20180118170918)
+  [1m[35m (1.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (97.6ms)[0m  [1m[35mCREATE TABLE "municipios" ("id" bigserial primary key, "nombre" character varying, "provincia_id" bigint, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, CONSTRAINT "fk_rails_54783b13ee"
+FOREIGN KEY ("provincia_id")
+  REFERENCES "provincia" ("id")
+)[0m
+  [1m[35m (48.5ms)[0m  [1m[35mCREATE  INDEX  "index_municipios_on_provincia_id" ON "municipios"  ("provincia_id")[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180118170918"]]
+  [1m[35m (6.0ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateLocalidades (20180118170936)
+  [1m[35m (1.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (103.1ms)[0m  [1m[35mCREATE TABLE "localidades" ("id" bigserial primary key, "nombre" character varying, "municipios_id" bigint, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, CONSTRAINT "fk_rails_44dbc8170a"
+FOREIGN KEY ("municipios_id")
+  REFERENCES "municipios" ("id")
+)[0m
+  [1m[35m (33.0ms)[0m  [1m[35mCREATE  INDEX  "index_localidades_on_municipios_id" ON "localidades"  ("municipios_id")[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180118170936"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateCategoria (20180118170959)
+  [1m[35m (5.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (251.2ms)[0m  [1m[35mCREATE TABLE "categoria" ("id" bigserial primary key, "nombre" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180118170959"]]
+  [1m[35m (35.0ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateSubcategoria (20180118171105)
+  [1m[35m (2.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (378.8ms)[0m  [1m[35mCREATE TABLE "subcategoria" ("id" bigserial primary key, "nombre" character varying, "categorias_id" bigint, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, CONSTRAINT "fk_rails_69b49540e4"
+FOREIGN KEY ("categorias_id")
+  REFERENCES "categorias" ("id")
+)[0m
+  [1m[35m (14.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_advisory_unlock(5160596074710597465)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5160596074710597465)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateSubcategoria (20180118171105)
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (79.1ms)[0m  [1m[35mCREATE TABLE "subcategoria" ("id" bigserial primary key, "nombre" character varying, "categoria_id" bigint, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, CONSTRAINT "fk_rails_14508fc5a7"
+FOREIGN KEY ("categoria_id")
+  REFERENCES "categoria" ("id")
+)[0m
+  [1m[35m (31.5ms)[0m  [1m[35mCREATE  INDEX  "index_subcategoria_on_categoria_id" ON "subcategoria"  ("categoria_id")[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180118171105"]]
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateEncuesta (20180118171141)
+  [1m[35m (1.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (74.0ms)[0m  [1m[35mCREATE TABLE "encuesta" ("id" bigserial primary key, "nombre" character varying, "fecha" date, "pregunta" character varying, "puntuacion" character varying, "aspectoEvaluar" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180118171141"]]
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreatePublicidads (20180118171302)
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT pg_advisory_unlock(5160596074710597465)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5160596074710597465)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreatePublicidads (20180118171302)
+  [1m[35m (1.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (89.0ms)[0m  [1m[35mCREATE TABLE "publicidads" ("id" bigserial primary key, "nombre" character varying, "periodo_publicacion" date, "cliente_id" bigint, "costo" float, "descripcion" text, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, CONSTRAINT "fk_rails_68d4d946a6"
+FOREIGN KEY ("cliente_id")
+  REFERENCES "clientes" ("id")
+)[0m
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT pg_advisory_unlock(5160596074710597465)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5160596074710597465)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreatePublicidads (20180118171302)
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (112.1ms)[0m  [1m[35mCREATE TABLE "publicidads" ("id" bigserial primary key, "nombre" character varying, "periodo_publicacion" date, "cliente_id" bigint, "costo" float, "descripcion" text, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, CONSTRAINT "fk_rails_68d4d946a6"
+FOREIGN KEY ("cliente_id")
+  REFERENCES "clientes" ("id")
+)[0m
+  [1m[35m (1.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT pg_advisory_unlock(5160596074710597465)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5160596074710597465)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreatePublicidads (20180118171302)
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (306.8ms)[0m  [1m[35mCREATE TABLE "publicidads" ("id" bigserial primary key, "nombre" character varying, "periodo_publicacion" date, "clientes_id" bigint, "costo" float, "descripcion" text, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, CONSTRAINT "fk_rails_21cc32232e"
+FOREIGN KEY ("clientes_id")
+  REFERENCES "clientes" ("id")
+)[0m
+  [1m[35m (0.5ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_advisory_unlock(5160596074710597465)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5160596074710597465)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreatePublicidads (20180118171302)
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (86.1ms)[0m  [1m[35mCREATE TABLE "publicidads" ("id" bigserial primary key, "nombre" character varying, "periodo_publicacion" date, "clientes_id" bigint, "costo" float, "descripcion" text, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, CONSTRAINT "fk_rails_21cc32232e"
+FOREIGN KEY ("clientes_id")
+  REFERENCES "clientes" ("id")
+)[0m
+  [1m[35m (0.5ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_advisory_unlock(5160596074710597465)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5160596074710597465)[0m
+  [1m[35m (7.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreatePublicidads (20180118171302)
+  [1m[35m (1.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (601.5ms)[0m  [1m[35mCREATE TABLE "publicidads" ("id" bigserial primary key, "nombre" character varying, "periodo_publicacion" date, "clientes_id" bigint, "costo" float, "descripcion" text, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, CONSTRAINT "fk_rails_21cc32232e"
+FOREIGN KEY ("clientes_id")
+  REFERENCES "clientes" ("id")
+)[0m
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT pg_advisory_unlock(5160596074710597465)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5160596074710597465)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateClientes (20180118174103)
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (61.0ms)[0m  [1m[35mCREATE TABLE "clientes" ("id" bigserial primary key, "nombre" character varying, "telf_contacto" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35mSQL (1.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180118174103"]]
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (22.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2018-01-18 17:55:41.841767"], ["updated_at", "2018-01-18 17:55:41.841767"]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT pg_advisory_unlock(5160596074710597465)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5160596074710597465)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreatePublicidads (20180118171302)
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (101.1ms)[0m  [1m[35mCREATE TABLE "publicidads" ("id" bigserial primary key, "nombre" character varying, "periodo_publicacion" date, "clientes_id" bigint, "costo" float, "descripcion" text, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, CONSTRAINT "fk_rails_21cc32232e"
+FOREIGN KEY ("clientes_id")
+  REFERENCES "clientes" ("id")
+)[0m
+  [1m[35m (15.0ms)[0m  [1m[35mCREATE  INDEX  "index_publicidads_on_clientes_id" ON "publicidads"  ("clientes_id")[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180118171302"]]
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreatePromocionEventos (20180118171325)
+  [1m[35m (1.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_advisory_unlock(5160596074710597465)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5160596074710597465)[0m
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreatePromocionEventos (20180118171325)
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.5ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT pg_advisory_unlock(5160596074710597465)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5160596074710597465)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreatePromocionEventos (20180118171325)
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT pg_advisory_unlock(5160596074710597465)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5160596074710597465)[0m
+  [1m[35m (6.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreatePromocionEventos (20180118171325)
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (124.1ms)[0m  [1m[35mCREATE TABLE "promocion_eventos" ("id" bigserial primary key, "nombre" character varying, "fecha" date, "descripcion" text, "periodo_publicacion" integer, "clientes_id" bigint, "costo" float, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, CONSTRAINT "fk_rails_f11a7ff89c"
+FOREIGN KEY ("clientes_id")
+  REFERENCES "clientes" ("id")
+)[0m
+  [1m[35m (22.0ms)[0m  [1m[35mCREATE  INDEX  "index_promocion_eventos_on_clientes_id" ON "promocion_eventos"  ("clientes_id")[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180118171325"]]
+  [1m[35m (2.0ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreatePagosPromocions (20180118174135)
+  [1m[35m (2.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (41.0ms)[0m  [1m[35mCREATE TABLE "pagos_promocions" ("id" bigserial primary key, "clientes_id" bigint, "publicidad_id" bigint, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, CONSTRAINT "fk_rails_81e10b10ec"
+FOREIGN KEY ("clientes_id")
+  REFERENCES "clientes" ("id")
+, CONSTRAINT "fk_rails_6712001b62"
+FOREIGN KEY ("publicidad_id")
+  REFERENCES "publicidads" ("id")
+)[0m
+  [1m[35m (32.0ms)[0m  [1m[35mCREATE  INDEX  "index_pagos_promocions_on_clientes_id" ON "pagos_promocions"  ("clientes_id")[0m
+  [1m[35m (25.5ms)[0m  [1m[35mCREATE  INDEX  "index_pagos_promocions_on_publicidad_id" ON "pagos_promocions"  ("publicidad_id")[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180118174135"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreatePagosPublicidads (20180118174202)
+  [1m[35m (1.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (46.5ms)[0m  [1m[35mCREATE TABLE "pagos_publicidads" ("id" bigserial primary key, "cliente_id" bigint, "promocionEventos_id" bigint, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, CONSTRAINT "fk_rails_5be57065e9"
+FOREIGN KEY ("cliente_id")
+  REFERENCES "clientes" ("id")
+, CONSTRAINT "fk_rails_4c08a76faf"
+FOREIGN KEY ("promocionEventos_id")
+  REFERENCES "promocionEventos" ("id")
+)[0m
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT pg_advisory_unlock(5160596074710597465)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5160596074710597465)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreatePagosPublicidads (20180118174202)
+  [1m[35m (1.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (82.1ms)[0m  [1m[35mCREATE TABLE "pagos_publicidads" ("id" bigserial primary key, "cliente_id" bigint, "promocion_eventos_id" bigint, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, CONSTRAINT "fk_rails_5be57065e9"
+FOREIGN KEY ("cliente_id")
+  REFERENCES "clientes" ("id")
+, CONSTRAINT "fk_rails_22a899b4aa"
+FOREIGN KEY ("promocion_eventos_id")
+  REFERENCES "promocion_eventos" ("id")
+)[0m
+  [1m[35m (19.0ms)[0m  [1m[35mCREATE  INDEX  "index_pagos_publicidads_on_cliente_id" ON "pagos_publicidads"  ("cliente_id")[0m
+  [1m[35m (18.0ms)[0m  [1m[35mCREATE  INDEX  "index_pagos_publicidads_on_promocion_eventos_id" ON "pagos_publicidads"  ("promocion_eventos_id")[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180118174202"]]
+  [1m[35m (23.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.0ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT pg_advisory_unlock(5160596074710597465)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5160596074710597465)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateProveedorServicios (20180118181023)
+  [1m[35m (1.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT pg_advisory_unlock(5160596074710597465)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5160596074710597465)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateProveedorServicios (20180118181023)
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_advisory_unlock(5160596074710597465)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5160596074710597465)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateProveedorServicios (20180118181023)
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (93.6ms)[0m  [1m[35mCREATE TABLE "proveedor_servicios" ("id" bigserial primary key, "nombre" character varying, "telf_contacto" character varying, "celular" character varying, "direccion" text, "localidad" character varying, "references" character varying, "precio_min" float, "precio_standard" float, "precio_max" float, "garantia" boolean, "tiempo_garantia_dias" integer, "servicio_domicilio" boolean, "experiencia" text, "evaluacion" float, "etiquetas_busqueda" text, "detalles" text, "estado_activo" boolean, "valido_hasta" timestamp, "cuota_pagada" character varying, "float" character varying, "tipo_cliente" character varying, "categoria_id" bigint, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, CONSTRAINT "fk_rails_f547f6041a"
+FOREIGN KEY ("categoria_id")
+  REFERENCES "categoria" ("id")
+)[0m
+  [1m[35m (30.0ms)[0m  [1m[35mCREATE  INDEX  "index_proveedor_servicios_on_categoria_id" ON "proveedor_servicios"  ("categoria_id")[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180118181023"]]
+  [1m[35m (2.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (1.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT pg_advisory_unlock(5160596074710597465)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m

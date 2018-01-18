@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @encuestum.nombre %>
+</p>
+
+<p>
+  <strong>Fecha:</strong>
+  <%= @encuestum.fecha %>
+</p>
+
+<p>
+  <strong>Pregunta:</strong>
+  <%= @encuestum.pregunta %>
+</p>
+
+<p>
+  <strong>Puntuacion:</strong>
+  <%= @encuestum.puntuacion %>
+</p>
+
+<p>
+  <strong>Aspectoevaluar:</strong>
+  <%= @encuestum.aspectoEvaluar %>
+</p>
+
+<%= link_to 'Edit', edit_encuestum_path(@encuestum) %> |
+<%= link_to 'Back', encuesta_path %>

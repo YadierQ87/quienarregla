@@ -1,0 +1,2 @@
+module PagosPublicidadsHelper
+end

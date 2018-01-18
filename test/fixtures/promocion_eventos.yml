@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nombre: MyString
+  fecha: 2018-01-18
+  descripcion: MyText
+  periodo_publicacion: 
+  cliente: one
+  costo: 1.5
+
+two:
+  nombre: MyString
+  fecha: 2018-01-18
+  descripcion: MyText
+  periodo_publicacion: 
+  cliente: two
+  costo: 1.5

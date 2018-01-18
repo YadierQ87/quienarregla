@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @promocion_evento.nombre %>
+</p>
+
+<p>
+  <strong>Fecha:</strong>
+  <%= @promocion_evento.fecha %>
+</p>
+
+<p>
+  <strong>Descripcion:</strong>
+  <%= @promocion_evento.descripcion %>
+</p>
+
+<p>
+  <strong>Periodo publicacion:</strong>
+  <%= @promocion_evento.periodo_publicacion %>
+</p>
+
+<p>
+  <strong>Cliente:</strong>
+  <%= @promocion_evento.cliente %>
+</p>
+
+<p>
+  <strong>Costo:</strong>
+  <%= @promocion_evento.costo %>
+</p>
+
+<%= link_to 'Edit', edit_promocion_evento_path(@promocion_evento) %> |
+<%= link_to 'Back', promocion_eventos_path %>

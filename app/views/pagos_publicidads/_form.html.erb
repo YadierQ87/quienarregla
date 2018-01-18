@@ -1,0 +1,27 @@
+<%= form_with(model: pagos_publicidad, local: true) do |form| %>
+  <% if pagos_publicidad.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(pagos_publicidad.errors.count, "error") %> prohibited this pagos_publicidad from being saved:</h2>
+
+      <ul>
+      <% pagos_publicidad.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :cliente_id %>
+    <%= form.text_field :cliente_id, id: :pagos_publicidad_cliente_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :promocionEventos_id %>
+    <%= form.text_field :promocionEventos_id, id: :pagos_publicidad_promocionEventos_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

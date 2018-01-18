@@ -1,0 +1,22 @@
+<%= form_with(model: provincium, local: true) do |form| %>
+  <% if provincium.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(provincium.errors.count, "error") %> prohibited this provincium from being saved:</h2>
+
+      <ul>
+      <% provincium.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :nombre %>
+    <%= form.text_field :nombre, id: :provincium_nombre %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Pagos Promocions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Cliente</th>
+      <th>Publicidad</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @pagos_promocions.each do |pagos_promocion| %>
+      <tr>
+        <td><%= pagos_promocion.cliente %></td>
+        <td><%= pagos_promocion.publicidad %></td>
+        <td><%= link_to 'Show', pagos_promocion %></td>
+        <td><%= link_to 'Edit', edit_pagos_promocion_path(pagos_promocion) %></td>
+        <td><%= link_to 'Destroy', pagos_promocion, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Pagos Promocion', new_pagos_promocion_path %>

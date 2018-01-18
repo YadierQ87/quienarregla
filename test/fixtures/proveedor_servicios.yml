@@ -1,0 +1,49 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nombre: MyString
+  telf_contacto: MyString
+  celular: MyString
+  direccion: MyText
+  localidad: MyString
+  references: MyString
+  precio_min: 1.5
+  precio_standard: 1.5
+  precio_max: 1.5
+  garantia: 
+  tiempo_garantia_dias: 
+  servicio_domicilio: 
+  experiencia: MyText
+  evaluacion: 1.5
+  etiquetas_busqueda: MyText
+  detalles: MyText
+  estado_activo: 
+  valido_hasta: 2018-01-18 13:10:51
+  cuota_pagada: MyString
+  float: MyString
+  tipo_cliente: MyString
+  categoria: one
+
+two:
+  nombre: MyString
+  telf_contacto: MyString
+  celular: MyString
+  direccion: MyText
+  localidad: MyString
+  references: MyString
+  precio_min: 1.5
+  precio_standard: 1.5
+  precio_max: 1.5
+  garantia: 
+  tiempo_garantia_dias: 
+  servicio_domicilio: 
+  experiencia: MyText
+  evaluacion: 1.5
+  etiquetas_busqueda: MyText
+  detalles: MyText
+  estado_activo: 
+  valido_hasta: 2018-01-18 13:10:51
+  cuota_pagada: MyString
+  float: MyString
+  tipo_cliente: MyString
+  categoria: two

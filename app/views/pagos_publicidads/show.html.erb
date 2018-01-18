@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Cliente:</strong>
+  <%= @pagos_publicidad.cliente %>
+</p>
+
+<p>
+  <strong>Promocioneventos:</strong>
+  <%= @pagos_publicidad.promocionEventos %>
+</p>
+
+<%= link_to 'Edit', edit_pagos_publicidad_path(@pagos_publicidad) %> |
+<%= link_to 'Back', pagos_publicidads_path %>
