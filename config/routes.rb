@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+
+  root :to => "portada#index" #page index by default
   resources :proveedor_servicios
   resources :pagos_publicidads
   resources :pagos_promocions
